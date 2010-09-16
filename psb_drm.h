@@ -44,7 +44,7 @@
  * c - Hotfix Release
  * xxxx - Graphics internal build #
  */
-#define PSB_PACKAGE_VERSION "5.2.0.32L.1004"
+#define PSB_PACKAGE_VERSION "5.4.0.32L.0004"
 
 #define DRM_PSB_SAREA_MAJOR 0
 #define DRM_PSB_SAREA_MINOR 2
@@ -568,10 +568,19 @@ struct drm_psb_stolen_memory_arg {
 #define REGRWBITS_PIPEBSRC			(1 << 4)
 #define REGRWBITS_VTOTAL_A			(1 << 5)
 #define REGRWBITS_VTOTAL_B			(1 << 6)
+#ifdef MDFLD_HDCP
+#define REGRWBITS_HDCP   			(1 << 7)
+#endif
+#define REGRWBITS_DSPACNTR	(1 << 8)
+#define REGRWBITS_DSPBCNTR	(1 << 9)
+#define REGRWBITS_DSPCCNTR	(1 << 10)
 
 /*Overlay Register Bits*/
 #define OV_REGRWBITS_OVADD			(1 << 0)
 #define OV_REGRWBITS_OGAM_ALL			(1 << 1)
+
+#define OVC_REGRWBITS_OVADD                  (1 << 2)
+#define OVC_REGRWBITS_OGAM_ALL			(1 << 3)
 
 struct drm_psb_register_rw_arg {
 	uint32_t b_force_hw_on;
@@ -587,6 +596,10 @@ struct drm_psb_register_rw_arg {
 		uint32_t pipebsrc;
 		uint32_t vtotal_a;
 		uint32_t vtotal_b;
+#ifdef MDFLD_HDCP
+		uint32_t hdcp_reg;
+		uint32_t hdcp_value;
+#endif
 	} display;
 
 	uint32_t overlay_read_mask;
@@ -600,6 +613,9 @@ struct drm_psb_register_rw_arg {
 		uint32_t OGAMC3;
 		uint32_t OGAMC4;
 		uint32_t OGAMC5;
+		uint32_t IEP_ENABLED;
+		uint32_t IEP_BLE_MINMAX;
+		uint32_t IEP_BSSCC_CONTROL;
 	} overlay;
 
 	uint32_t sprite_enable_mask;
@@ -616,6 +632,9 @@ struct drm_psb_register_rw_arg {
 		uint32_t dspc_size;
 		uint32_t dspc_surface;
 	} sprite;
+
+	uint32_t subpicture_enable_mask;
+	uint32_t subpicture_disable_mask;
 };
 
 struct psb_gtt_mapping_arg {
