@@ -1,1 +1,1 @@
-../linux-2.6/drivers/gpu/drm/mrst/drv/psb_drm.h
+../linux-2.6/drivers/staging/mrst/drv/psb_drm.h
