@@ -18,15 +18,3 @@ LOCAL_COPY_HEADERS :=			\
 		ttm_placement.h\
 
 include $(BUILD_COPY_HEADERS)
-
-
-include $(CLEAR_VARS)
-
-LOCAL_COPY_HEADERS_TO := libpsb_drm
-
-LOCAL_COPY_HEADERS :=			\
-		psb_drm.h		\
-		psb_reg.h
-
-include $(BUILD_COPY_HEADERS)
-
